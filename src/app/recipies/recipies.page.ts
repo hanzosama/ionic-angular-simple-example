@@ -15,6 +15,7 @@ export class RecipiesPage implements OnInit {
 
   ngOnInit() {
     this.recipies = this.recipiesService.getAllRecipies();
+    console.log(this.recipies);
   }
 
 }
