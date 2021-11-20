@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { dismiss } from '@ionic/core/dist/types/utils/overlays';
@@ -10,7 +10,7 @@ import { RecipiesService } from '../recipies.service';
   templateUrl: './recipe-detail.page.html',
   styleUrls: ['./recipe-detail.page.scss'],
 })
-export class RecipeDetailPage implements OnInit {
+export class RecipeDetailPage implements OnInit, OnDestroy {
   loadedRecipe: Recipe;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,6 +31,10 @@ export class RecipeDetailPage implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    console.log('OnDestroy');
+  }
+
   onDeleteRecipe() {
     this.alertCtr.create({
       header: 'Are you sure?',
@@ -48,5 +52,26 @@ export class RecipeDetailPage implements OnInit {
     }).then(alertElm => alertElm.present());
 
   }
+
+
+  //LifeCycle Hooks IONIC
+  ionViewDidEnter() {
+    console.log('did enter');
+
+  }
+
+  ionViewWillEnter() {
+    console.log('will enter');
+  }
+
+  ionViewWillLeave() {
+    console.log('will leve');
+  }
+
+  ionViewDidLeave() {
+    console.log('did leave');
+  }
+
+  //End LifeCycle Hooks IONIC
 
 }
